@@ -1,0 +1,70 @@
+---
+title: "Research Compendium"
+format: 
+    pdf: default
+bibliography: references.bib
+csl: apa.csl
+---
+
+## Introduction
+
+We will act as though we have very useful things to say about simulation studies here. In fact, so useful that we even include an equation, which shows just how useful equations are:
+
+$$
+U = \frac{N_E^2}{F},
+$$
+
+where $U$ is usefulness, $N_E$ is the number of equations, and $F$ is the amount of effort expended. I think we are now ready to move on to our results! Methods are overrated anyway.
+
+## Results
+
+Here are some results from our simulation study:
+```{r results}
+#| message: false
+#| warning: false
+#| echo: false
+#| fig-cap: "Effect of measurement error on the HbA1C estimate"
+
+# loading the here package
+if (!require(here)) {
+  install.packages("here")
+}
+library(here)
+
+# getting the packages we need
+source(here::here("scripts", "00_packages.R"))
+
+# loading the data
+# we try to avaid cluttering the console with messages/warnings
+invisible(
+  capture.output(
+    suppressMessages(
+      suppressWarnings(
+        source(here::here("scripts", "01_loading_data.R"),
+               local = .GlobalEnv)
+      )
+    ),
+    type = c("output", "message")
+  )
+)
+
+# data preparation
+source(here::here("scripts", "02_data_preparation.R"))
+
+# optional: analysis of the original data
+# source(here::here("scripts", "03_data_preparation.R"))
+
+# simulation study results
+source(here::here("scripts", "04_sim_MSE.R"))
+
+# creating the plot
+source(here::here("scripts", "05_plotting.R"))
+
+FIGURE
+
+```
+
+<!-- To render the file -->
+<!-- quarto render "writing/Research_Compendium.qmd" -->
+
+
