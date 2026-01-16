@@ -2,4 +2,4 @@
 
 Deliverable 2: Formatted markup manuscript.
 
-Figure 2 of this manuscript can be created using the research compendium. Figures are included here as .png files to facilitate viewing the manuscript without having to run (very computationally expensive) code.
+This manuscript is the Research Report from my thesis project. Figure 2 in this manuscript can be reproduced using the research compendium. The figures are also provided as .png files so the manuscript can be read without running the (computationally expensive) simulation code.
