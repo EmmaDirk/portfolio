@@ -1,0 +1,57 @@
+---
+title: "The great Mlarpis Presentation"
+author: 
+  - name: "Manolo Zapato"
+    orcid: "0009-0008-3489-9241"
+    email: "manolozapato@example.com"
+format: revealjs
+---
+
+## My favourite equation.
+
+If 
+$$
+a = b,
+$$
+
+then
+
+$$
+a^2 = ab
+$$
+
+As such:
+
+$$
+(a - b)(a + b) = b(a - b)
+$$
+
+---
+
+Now we cancel $(a - b)$ to get:
+
+$$
+a + b = b
+$$
+
+Hence:
+
+$$
+b + b = b
+$$
+
+Therefore:
+
+$$
+2b = b
+$$
+
+Thus:
+
+$$
+2 = 1
+$$
+
+## Top secret information about Mano. 
+
+![](Screenshot 2025-10-14 151827.png){width=70%}

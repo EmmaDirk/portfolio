@@ -1,0 +1,137 @@
+---
+title: "The Great Mlarpis Presentation 2"
+format:
+  revealjs:
+    theme: moon
+    logo: "Screenshot 2025-10-14 162705.png"
+    df-print: paged
+author:
+  - name: "Manolo Zapato"
+link-citations: true
+bibliography: references.bib
+---
+
+## Static figure slide
+
+```{r, table slide, cache=TRUE}
+
+library(tidyverse)
+
+# simulate some data
+set.seed(123)
+X <- rnorm(1000, mean = 0, sd = 2)
+Y <- 0.65 * X + rnorm(1000, mean = 0, sd = 2)
+
+# 
+dir.create("data", showWarnings = FALSE)
+write.csv(data.frame(X, Y), "data/data.csv")
+
+# plot the data
+ggplot(data.frame(X, Y), aes(X, Y)) +
+  geom_point() +
+  geom_smooth(method = "lm") +
+  labs(x = "MLARPIS KNOWLEDGE", y = "GENERAL HAPPINESS") +
+  theme_minimal()
+```
+
+## Interactive table slide
+
+```{r}
+library(tidyverse)
+library(DT)
+
+# simulate dichotomous variable
+set.seed(123)
+X1 <- rbinom(1000, 1, 0.5)
+Y1 <- 0.65 * X1 + rnorm(1000, mean = 0, sd = 2)
+df <- data.frame(X1, Y1)
+
+# interactive mean table
+datatable(
+  tibble(
+    X1 = c("X1 = 0", "X1 = 1"),
+    Mean_Y1 = c(mean(df$Y1[df$X1 == 0]),
+                mean(df$Y1[df$X1 == 1]))
+  ),
+  options = list(dom = "t")
+)
+```
+
+## A moving figure
+
+```{r}
+
+library(plotly)
+set.seed(42)
+
+# simulate surface
+x <- seq(-3, 3, length.out = 60)
+y <- seq(-3, 3, length.out = 60)
+g <- expand.grid(x = x, y = y)
+z <- with(g, exp(-(x^2 + y^2)) * (sin(3 * x) + cos(3 * y)))
+Z <- matrix(z, nrow = length(x), ncol = length(y))
+
+# plot + auto-rotate
+p <- plot_ly(x = ~x, y = ~y, z = ~Z) |>
+  add_surface() |>
+  layout(scene = list(zaxis = list(title = "z")))
+
+htmlwidgets::onRender(p, "
+function(el, x){
+  const gd = document.getElementById(el.id);
+  let t = 0;
+  (function rotate(){
+    t += 0.02;
+    Plotly.relayout(gd, {\"scene.camera.eye\": {
+      x: 1.6*Math.cos(t),
+      y: 1.6*Math.sin(t),
+      z: 0.8
+    }});
+    requestAnimationFrame(rotate);
+  })();
+}
+")
+```
+
+## A two-column layout
+
+::: columns
+::: column
+### Left side
+- take some bullet point  
+- take some bullet point  
+- and another  
+:::
+
+::: column
+### Right side
+```{r}
+plot(cars)
+```
+This finding supports earlier results [@hejnol2009mouth].
+:::
+:::
+
+## Showing unexecuted code
+
+```{r, eval=FALSE, echo=TRUE}
+
+set.seed(1)
+
+x <- rnorm(100)
+
+y <- 0.7 * x + rnorm(100, 0, 1)
+
+plot(x, y)
+
+```
+
+## calling some cached output
+
+```{r calling the cached output, echo=TRUE, eval=FALSE}
+
+d <- readRDS("data/scatter.rds")
+
+```
+
+## References
