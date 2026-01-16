@@ -3,7 +3,7 @@
 <!-- badges: start -->
 <!-- badges: end -->
 
-Purpose: The goal of my-reproducible-manuscript is to practice creating a self-contained documents. 
+Purpose: The goal of my-reproducible-manuscript is to practice creating a self-contained document.
 
 Author: Mano van Holten
 
